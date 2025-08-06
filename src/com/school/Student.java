@@ -2,10 +2,10 @@
  class Student {
     String name;
     int studentId;
-
-    public void setDetails(int id , String studentName){
-        this.studentId = id;
-        this.name = studentName;
+    private static int nextStudentIdCounter = 1;
+    public Student(String name){
+        this.studentId = nextStudentIdCounter++;
+        this.name = name;
     }
     public void displayDetails(){
         System.out.println("Student ID : " + this.studentId + ", Name: " + this.name); 
