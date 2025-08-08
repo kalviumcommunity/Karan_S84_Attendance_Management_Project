@@ -1,5 +1,5 @@
 package com.school;
-
+import java.util.*;
 public class Main {
     public static void main(String[] args) {
         
@@ -13,9 +13,15 @@ public class Main {
 
        Course [] arr1 = {c1 , c2};
        Student [] arr2 = {s1 , s2};
-       System.out.println("Registered Students: ");
-       for(Student s : arr2) s.displayDetails();
-       System.out.println("Course Details: ");
-       for(Course c : arr1) c.displayDetails();
-        }
+    //    System.out.println("Registered Students: ");
+    //    for(Student s : arr2) s.displayDetails();
+    //    System.out.println("Course Details: ");
+    //    for(Course c : arr1) c.displayDetails();
+
+        ArrayList<AttendanceRecord> attendanceLog = new ArrayList<>();
+        attendanceLog.add(new AttendanceRecord(s1.getId() , c1.getId() , "Present"));
+        attendanceLog.add(new AttendanceRecord(s2.getId() , c2.getId() , "Late"));
+        attendanceLog.add(new AttendanceRecord(s1.getId(), c2.getId() ,   "Absent" ));
+        for(AttendanceRecord record : attendanceLog) record.displayRecord();
+    }
 }
