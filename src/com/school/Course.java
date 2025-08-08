@@ -5,12 +5,18 @@ package com.school;
 // Add a public constructor Course(String courseName) that initializes courseId using nextCourseIdCounter++ and courseName using the parameter.
 // Update the displayDetails() method to print the int courseId (e.g., prefixed with "C").
 class Course {
-    int courseId;
-    String name;
+    private int courseId;
+    private String name;
     private static int nextCourseIdCounter = 101;
     public Course(String name){
         this.name = name;
         this.courseId = nextCourseIdCounter++;
+    }
+    public int  getId(){
+        return courseId;
+    }
+    public String course(){
+        return name;
     }
     public void displayDetails(){
         System.out.println("Course ID: C" + this.courseId + " , Name: " + this.name);
