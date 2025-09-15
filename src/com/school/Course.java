@@ -12,7 +12,7 @@ class Course {
         this.name = name;
         this.courseId = nextCourseIdCounter++;
     }
-    public int  getId(){
+    public int  getCourseId(){
         return courseId;
     }
     public String course(){
