@@ -1,25 +1,36 @@
+
 package com.school;
 
-public class Student extends Person { // Extends Person
-    // private static int nextStudentIdCounter = 1; // Removed, uses Person's ID
-    // private int studentId;    // Removed, uses Person's id
-    // private String name;      // Removed, uses Person's name
+class Student extends Person implements Storable{
+    private static int nextStudentIdCounter = 1;
 
-    private String gradeLevel; // Example new specific field
+    private int studentId;
+    private String name;
+    private String gradeLevel;
 
     public Student(String name, String gradeLevel) {
-        super(name); // Calls Person constructor
+        super(name);
+        this.name = name;
+        this.studentId = nextStudentIdCounter++;
         this.gradeLevel = gradeLevel;
     }
 
-    // Getter for gradeLevel (optional for now, focus on display)
-    public String getGradeLevel() {
-        return gradeLevel;
+    public int getStudentId() {
+        return studentId;
+    }
+    public String getName() {
+        return name;
     }
 
-    @Override // Good practice to indicate overriding
+    @Override
     public void displayDetails() {
-        super.displayDetails(); // Call Person's displayDetails
-        System.out.println(", Grade Level: " + gradeLevel + " (Role: Student)");
+        super.displayDetails();
+        System.out.println("Student ID: " + this.studentId + ", Name: " + this.name);
     }
+
+    @Override
+    public String toDataString() {
+        return studentId + "," + name + "," + gradeLevel;
+    }
+
 }

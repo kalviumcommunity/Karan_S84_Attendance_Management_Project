@@ -1,47 +1,48 @@
 package com.school;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("--- School Administration & Attendance System ---"); // Title update
+        String ownerName = "Aviansh";
+        System.out.println("Welcome to the School Attendance System Project! Owner: " + ownerName);
+        System.out.println("Session 1: Project Setup and Orientation Complete.");
 
-        // Creating different types of people
-        System.out.println("\n--- Creating School Personnel ---");
-        Student student1 = new Student("Alice Wonderland", "Grade 10");
-        Student student2 = new Student("Bob The Builder", "Grade 9");
-        Teacher teacher1 = new Teacher("Dr. Emily Carter", "Physics");
-        Staff staff1 = new Staff("Mr. John Davis", "Librarian");
+        ArrayList<AttendanceRecord> attendancelog = new ArrayList<>();
+        ArrayList<Student> studentsList = new ArrayList<>();
+        ArrayList<Course> coursesList = new ArrayList<>();
 
-        System.out.println("\n--- School Personnel Details ---");
-        student1.displayDetails();
-        student2.displayDetails();
-        teacher1.displayDetails();
-        staff1.displayDetails();
+        Student sA = new Student("Karan Devgab", "10th Grade");
+        Student sB = new Student("Sksham Kaushal", "12th Grade");
+        studentsList.add(sA);
+        studentsList.add(sB);
 
-        Course course1 = new Course("Intro to Quantum Physics"); // Updated course name
-        System.out.println("\nAvailable Courses:");
-        course1.displayDetails();
+        Course c1 = new Course("Data Structure and Algorithms");
+        Course c2 = new Course("Full Stack Web Development");
+        coursesList.add(c1);
+        coursesList.add(c2);
 
+        
+        Teacher t1 = new Teacher("Rishiwanth", "Java and Javascript");
+        Staff s1 = new Staff("Ashish", "Coffee distributer");
 
-        // --- Attendance Recording (Modified to use Person's ID) ---
-        System.out.println("\n--- Attendance Recording ---");
-        List<AttendanceRecord> attendanceLog = new ArrayList<>();
-
-        // Student1 attends course1
-        AttendanceRecord record1 = new AttendanceRecord(student1.getId(), course1.getCourseId(), "Present");
-        attendanceLog.add(record1);
-
-        // Student2 attempts to attend course1 with an invalid status
-        AttendanceRecord record2 = new AttendanceRecord(student2.getId(), course1.getCourseId(), "Daydreaming");
-        attendanceLog.add(record2);
-
-        System.out.println("\n--- Attendance Log ---");
-        for (AttendanceRecord record : attendanceLog) {
+        attendancelog.add(new AttendanceRecord(studentsList.get(0).getStudentId(), coursesList.get(0).getCourseId(), "Present"));
+        attendancelog.add(new AttendanceRecord(studentsList.get(1).getStudentId(), coursesList.get(1).getCourseId(), "Absent"));
+        attendancelog.add(new AttendanceRecord(studentsList.get(0).getStudentId(), coursesList.get(1).getCourseId(), "Avinash"));
+        
+        System.err.println("Attendance Log");
+        
+        for(AttendanceRecord record : attendancelog){
             record.displayRecord();
         }
 
-        System.out.println("\nSession 5: Inheritance Hierarchy Established Complete.");
+        t1.displayDetails();
+        s1.displayDetails();
+
+         FileStorageService storageService = new FileStorageService();
+        storageService.saveData(studentsList, "students.txt");
+        storageService.saveData(coursesList, "courses.txt");
+        storageService.saveData(attendancelog, "attendance_log.txt");
+    
     }
 }
